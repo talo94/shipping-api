@@ -1,3 +1,4 @@
+const { socket } = require("../../socket");
 const store = require("./store");
 
 const EnumStatus = {
@@ -80,6 +81,7 @@ const updateStatus = (guideNumber, status) => {
     store
       .updateStatus(guideNumber, newStatus)
       .then((response) => {
+        socket.io.emit(`newStatus-${guideNumber}`, response);
         resolve(response);
       })
       .catch((error) => {

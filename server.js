@@ -1,7 +1,11 @@
 require("dotenv").config();
-
 const express = require("express");
+const app = express();
+const server = require("http").Server(app);
+
+const cors = require("cors");
 const bodyParser = require("body-parser");
+const socket = require("./socket");
 const db = require("./db");
 const router = require("./network/routes");
 
@@ -9,11 +13,15 @@ const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@clu
 
 db(url);
 
-const app = express();
+app.use(cors());
+
 app.use(bodyParser.json());
+socket.connect(server);
 router(app);
 
 const port = 3000;
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Servidor iniciado en el puerto ${port}`);
 });
+
+
