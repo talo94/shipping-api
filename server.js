@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 socket.connect(server);
 router(app);
 
-const port = 3000;
+const port = process.env.PORT || 5000;
 server.listen(port, () => {
   console.log(`Servidor iniciado en el puerto ${port}`);
 });
