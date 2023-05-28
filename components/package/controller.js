@@ -35,8 +35,8 @@ const addPackage = (package) => {
           type: EnumStatus.ADDED,
           date: new Date(),
           location: {
-            lat: DEFAULT_LOCATION.lat,
-            lng: DEFAULT_LOCATION.lng,
+            lat: statusList.lat || DEFAULT_LOCATION.lat,
+            lng: statusList.lng || DEFAULT_LOCATION.lng,
           },
         },
       ],
