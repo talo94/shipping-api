@@ -1,16 +1,4 @@
-require("dotenv").config();
-const db = require("mongoose");
 const Model = require("./model");
-db.Promise = global.Promise;
-db.connect(
-  `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.09cprqs.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-)
-  .then(() => console.log("[db] Conectada con éxito"))
-  .catch((error) => console.log("[db] Error al conectar", error));
 
 const getAllPackages = async () => {
   const packages = await Model.find();
