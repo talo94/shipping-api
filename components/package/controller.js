@@ -19,7 +19,8 @@ const addPackage = (package) => {
       !package.guideNumber ||
       !package.origin ||
       !package.destination ||
-      !package.weight
+      !package.weight ||
+      !package.statusList
     ) {
       return reject("Los datos son incorrectos");
     }
@@ -35,8 +36,8 @@ const addPackage = (package) => {
           type: EnumStatus.ADDED,
           date: new Date(),
           location: {
-            lat: statusList.lat || DEFAULT_LOCATION.lat,
-            lng: statusList.lng || DEFAULT_LOCATION.lng,
+            lat: package.statusList.lat || DEFAULT_LOCATION.lat,
+            lng: package.statusList.lng || DEFAULT_LOCATION.lng,
           },
         },
       ],
